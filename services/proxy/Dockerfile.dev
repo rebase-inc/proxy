@@ -1,0 +1,7 @@
+FROM nginx
+
+RUN rm /etc/nginx/conf.d/default.conf
+
+RUN ln -sf /etc/nginx/conf.d/dev.nginx /etc/nginx/nginx.conf
+
+RUN ls /etc/nginx/conf.d/

@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  proxy:
+    extends:
+      file: common.yml
+      service: proxy
+    build:
+      dockerfile: Dockerfile.dev 
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../services/proxy/conf:/etc/nginx/conf.d
+  rsyslog:
+    extends:
+      file: "../${RSYSLOG_REPO}/layouts/common.yml"
+      service: rsyslog

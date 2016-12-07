@@ -1,0 +1,18 @@
+# ssl settings
+gzip                        on;
+ssl                         on;
+add_header                  Strict-Transport-Security max-age=31536000;
+ssl_prefer_server_ciphers   on;
+ssl_ciphers                 'kEECDH+ECDSA+AES128 kEECDH+ECDSA+AES256 kEECDH+AES128 kEECDH+AES256 kEDH+AES128 kEDH+AES256 DES-CBC3-SHA +SHA !aNULL !eNULL !LOW !MD5 !EXP !DSS !PSK !SRP !kECDH !CAMELLIA !RC4 !SEED';
+ssl_protocols               TLSv1.2;
+ssl_session_cache           shared:SSL:10m;
+ssl_session_timeout         10m;
+keepalive_timeout           70;
+ssl_stapling                on;
+ssl_stapling_verify         on;
+access_log  syslog:rsyslog main;
+error_log   syslog:rsyslog debug;
+
+# TODO: Parameterize 
+ssl_certificate_key /etc/letsencrypt/live/code2resume.rebaseapp.com/privkey.pem;
+ssl_certificate /etc/letsencrypt/live/code2resume.rebaseapp.com/fullchain.pem;
