@@ -6,8 +6,11 @@ prompt() {
   read -e -p "$1 [$2]: " var
   echo ${var:-$2}
 }
+abspath() {
+  echo "$(cd "$(dirname "$1")"; pwd)/$(basename "$1")"
+}
 
-export RSYSLOG_REPO=${RSYSLOG_REPO:-$(prompt "rsyslog repo" "../rsyslog")}
+export LOGGING_SERVER_REPO=${LOGGING_SERVER_REPO:-$(abspath $(prompt "logging server repo" "../rsyslog"))}
 type=${BASH_ARGV[0]:-dev}
 
 echo -e "${RED}Building ${type} environment...${NC}"

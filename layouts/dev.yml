@@ -11,7 +11,7 @@ services:
       - "3000:3000"
     volumes:
       - ../services/proxy/conf:/etc/nginx/conf.d
-  rsyslog:
+  logging_server:
     extends:
-      file: "../${RSYSLOG_REPO}/layouts/common.yml"
-      service: rsyslog
+      file: "${LOGGING_SERVER_REPO}/layouts/common.yml"
+      service: logging_server

@@ -6,8 +6,7 @@ RUN rm /etc/nginx/conf.d/default.conf && \
     wget https://dl.eff.org/certbot-auto && \
     chmod a+x certbot-auto && \
     mkdir -p /etc/letsencrypt/webrootauth && \
-    ln -sf /etc/nginx/dev.conf /etc/nginx/conf
+    ln -sf /etc/nginx/conf.d/dev.nginx /etc/nginx/nginx.conf
 
 COPY listen.sh /usr/bin/listen
-
-COPY conf/* /etc/nginx/
+COPY conf/* /etc/nginx/conf.d/

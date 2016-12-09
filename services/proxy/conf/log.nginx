@@ -1,2 +1,2 @@
-access_log  syslog:server=rsyslog;
-error_log   syslog:server=rsyslog;
+access_log  syslog:server=logging_server;
+error_log   syslog:server=logging_server;
