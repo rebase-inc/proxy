@@ -10,7 +10,7 @@ abspath() {
   echo "$(cd "$(dirname "$1")"; pwd)/$(basename "$1")"
 }
 
-export LOGGING_SERVER_REPO=${LOGGING_SERVER_REPO:-$(abspath $(prompt "logging server repo" "../rsyslog"))}
+export LOGGING_SERVER_REPO=${LOGGING_SERVER_REPO:-$(abspath $(prompt "logging server repo" "../logging-server"))}
 type=${BASH_ARGV[0]:-dev}
 
 echo -e "${RED}Building ${type} environment...${NC}"
