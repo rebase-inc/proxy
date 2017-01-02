@@ -1,2 +1,9 @@
-access_log  syslog:server=logserver;
+# https://www.ietf.org/rfc/rfc3164.txt
+#<PRI>TIMESTAMP SP HOST SP TAG MSG(Freetext)
+# Where SP is the ascii "space" character
+# see http://nginx.org/en/docs/http/ngx_http_log_module.html for log format details
+log_format rsyslog_info '$host $host $request $status from $remote_addr ($http_referer)';
+#log_format rsyslog_err '<3>$time_local $host $host $request $status from $http_referer'; # for now, you can't specify a custom format for error logs :(
+
+access_log  syslog:server=logserver rsyslog_info;
 error_log   syslog:server=logserver;
