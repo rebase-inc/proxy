@@ -1,0 +1,4 @@
+This file is there so we can have an empty ./etc dir
+that gets copied without error when building Dockerfile.
+
+./etc is used when generating production proxy images with certificates.
