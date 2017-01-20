@@ -1,0 +1,31 @@
+user              nginx;
+worker_processes  auto;
+pid               /var/run/nginx.pid;
+events { worker_connections  1024; }
+
+
+http {
+  include /etc/nginx/mime.types;
+  include /etc/nginx/conf.d/common.nginx;
+  include /etc/nginx/conf.d/log.nginx;
+
+  server {
+      listen 80;
+      server_name  skills.rebaseapp.com;
+      gzip on;
+
+      include log.nginx;
+
+      location /.well-known/acme-challenge {
+          root /etc/letsencrypt/webrootauth;
+          default_type "text/plain";
+      }
+  }
+
+  server {
+# if no Host match, close the connection to prevent host spoofing
+      listen 80 default_server;
+      return 444;
+  }
+}
+

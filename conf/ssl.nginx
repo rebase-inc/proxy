@@ -1,5 +1,3 @@
-# ssl settings
-gzip                        on;
 ssl                         on;
 add_header                  Strict-Transport-Security max-age=31536000;
 ssl_prefer_server_ciphers   on;
@@ -10,9 +8,7 @@ ssl_session_timeout         10m;
 keepalive_timeout           70;
 ssl_stapling                on;
 ssl_stapling_verify         on;
-access_log  syslog:rsyslog main;
-error_log   syslog:rsyslog debug;
 
 # TODO: Parameterize 
-ssl_certificate_key /etc/letsencrypt/live/code2resume.rebaseapp.com/privkey.pem;
-ssl_certificate /etc/letsencrypt/live/code2resume.rebaseapp.com/fullchain.pem;
+ssl_certificate_key /etc/letsencrypt/live/skills.rebaseapp.com/privkey.pem;
+ssl_certificate /etc/letsencrypt/live/skills.rebaseapp.com/fullchain.pem;
