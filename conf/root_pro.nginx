@@ -9,6 +9,9 @@ http {
   include /etc/nginx/conf.d/common.nginx;
   include /etc/nginx/conf.d/log.nginx;
 
+  # connnection control
+  limit_conn_zone $binary_remote_addr zone=addr:5m;
+
 
   server {
       listen         80;
@@ -30,6 +33,11 @@ http {
       gzip on;
 
       include /etc/nginx/conf.d/ssl.nginx;
+      include /etc/nginx/conf.d/protections.nginx;
+
+      if ($host !~ ^(skills.rebaseapp.com)$ ) {
+         return 444;
+      }
 
       location / { 
           include /etc/nginx/conf.d/proxy.nginx;
@@ -42,10 +50,5 @@ http {
 
   }
 
-  server {
-      # if no Host match, close the connection to prevent host spoofing
-      listen 80 default_server;
-      return 444;
-  }
 }
 

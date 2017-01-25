@@ -1,0 +1,29 @@
+# buffer overflow protections
+client_body_buffer_size  1K;
+client_header_buffer_size 1k;
+client_max_body_size 1k;
+large_client_header_buffers 2 1k;
+
+# timeouts
+client_body_timeout   10;
+client_header_timeout 10;
+keepalive_timeout     5 5;
+send_timeout          10;
+
+# allowed methods
+if ($request_method !~ ^(GET|HEAD|POST)$ ) {
+	return 444;
+}
+
+# clickjacking attack
+add_header X-Frame-Options "SAMEORIGIN";
+
+# cross-site scripting attack
+add_header X-XSS-Protection "1; mode=block";
+
+# Content Security Policy
+add_header Content-Security-Policy "default-src 'self';";
+
+#  Prevent security vulnerability like MIME types by implementing X-Content-Type-Options
+add_header X-Content-Type-Options nosniff;
+

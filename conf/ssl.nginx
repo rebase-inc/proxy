@@ -5,7 +5,6 @@ ssl_ciphers                 'kEECDH+ECDSA+AES128 kEECDH+ECDSA+AES256 kEECDH+AES1
 ssl_protocols               TLSv1.2;
 ssl_session_cache           shared:SSL:10m;
 ssl_session_timeout         10m;
-keepalive_timeout           70;
 ssl_stapling                on;
 ssl_stapling_verify         on;
 
