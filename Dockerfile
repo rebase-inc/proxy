@@ -1,8 +1,7 @@
 # do not use alpine, it is not supported by Let's Encrypt
 FROM nginx
 
-RUN mkdir -p /nginx && ln -s /nginx /var/cache/nginx && \
-    rm /etc/nginx/conf.d/default.conf && \ 
+RUN rm /etc/nginx/conf.d/default.conf && \ 
     apt-get update && \
     apt-get install -y wget && \
     wget https://dl.eff.org/certbot-auto && \

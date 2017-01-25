@@ -1,6 +1,6 @@
 user              nginx;
 worker_processes  auto;
-pid               /var/run/nginx.pid;
+pid               /nginx_cache/nginx.pid;
 events { worker_connections  1024; }
 
 
@@ -11,6 +11,12 @@ http {
 
   # connnection control
   limit_conn_zone $binary_remote_addr zone=addr:5m;
+
+  proxy_temp_path       /nginx_cache/proxy_temp;
+  client_body_temp_path /nginx_cache/client_temp;
+  fastcgi_temp_path     /nginx_cache/fastcgi_temp;
+  scgi_temp_path        /nginx_cache/scgi_temp;
+  uwsgi_temp_path       /nginx_cache/uwsgi_temp;
 
 
   server {
